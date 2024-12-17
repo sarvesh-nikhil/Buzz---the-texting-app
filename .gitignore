@@ -1,0 +1,10 @@
+# Node.js (React Frontend)
+frontend/node_modules/
+frontend/package-lock.json
+
+# Python (FastAPI Backend)
+backend/venv/
+backend/__pycache__/
+
+# Git Ignore Overrides
+!.gitignore

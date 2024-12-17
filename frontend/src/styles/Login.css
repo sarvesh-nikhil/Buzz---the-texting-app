@@ -1,0 +1,96 @@
+/* Login.css */
+
+.login-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    min-height: 100vh; /* Full viewport height */
+    background: linear-gradient(135deg, #6E48AA, #9D50BB);
+    font-family: 'Arial', sans-serif;
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin: auto; /* Center horizontally */
+    margin-top: auto; /* Pushes the login box up to fill the space */
+}
+
+.login-box h2 {
+    color: #6E48AA;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: #6E48AA;
+}
+
+.login-box button {
+    background-color: #6E48AA;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-box button:hover {
+    background-color: #9D50BB;
+}
+
+.login-box .error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.login-box .success-message {
+    color: green;
+    margin-top: 10px;
+}
+
+.login-box h4 {
+    color: #333;
+    margin-top: 20px;
+}
+
+.login-box a {
+    color: #6E48AA;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-box a:hover {
+    color: #9D50BB;
+}
+
+/* Footer styling */
+.footer {
+    background-color: #f1f1f1;
+    color: #333;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.reset-password {
+    margin-top: 10px;
+}
