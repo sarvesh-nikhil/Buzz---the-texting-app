@@ -1,0 +1,47 @@
+
+services:
+  db:
+    image: mysql:latest
+    container_name: db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: student
+      MYSQL_DATABASE: Chatappusers
+    ports:
+      - "3308:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 10s
+
+  buzz-backend:
+    build: ./backend
+    container_name: buzz-backend
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "mysql+pymysql://root:student@db:3306/Chatappusers"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    command: [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload" ]
+
+  buzz-frontend:
+    build: ./frontend
+    container_name: buzz-frontend
+    restart: always
+    depends_on:
+      - buzz-backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    stdin_open: true
+    tty: true
+
+volumes:
+  db_data:

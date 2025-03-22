@@ -24,7 +24,7 @@ function Login() {
         setError('');
     
         if (!username.trim() || !password.trim()) {
-            setError("Username and password cannot be empty.");
+            setError("Buddy, dont leave fields empty!");
             return;
         }
     

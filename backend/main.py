@@ -17,13 +17,17 @@ from datetime import datetime, timedelta
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
 from starlette.responses import JSONResponse
 from pydantic import BaseModel
+import os
+from dotenv import load_dotenv
 
 # cloudinary for storing profile images
 import cloudinary
 import cloudinary.uploader
 
+load_dotenv()
+
 # MySQL Database URL
-DATABASE_URL = "mysql+pymysql://root:student@localhost/Chatappusers"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 # Create a new engine instance
 engine = create_engine(DATABASE_URL)
@@ -47,23 +51,23 @@ app.add_middleware(
 
 # Email configuration for sending emails
 conf = ConnectionConfig(
-    MAIL_USERNAME="mrsarveshkraj01@gmail.com",
-    MAIL_PASSWORD="ugyz pwei warv zuna",
-    MAIL_FROM="mrsarveshkraj01@gmail.com",
-    MAIL_PORT=465,
-    MAIL_SERVER="smtp.gmail.com",  # or another SMTP server
-    MAIL_STARTTLS = False,
-    MAIL_SSL_TLS = True,
-    USE_CREDENTIALS = True,
-    VALIDATE_CERTS = True
+    MAIL_USERNAME=os.getenv("MAIL_USERNAME"),
+    MAIL_PASSWORD=os.getenv("MAIL_PASSWORD"),
+    MAIL_FROM=os.getenv("MAIL_FROM"),
+    MAIL_PORT=int(os.getenv("MAIL_PORT")),
+    MAIL_SERVER=os.getenv("MAIL_SERVER"),
+    MAIL_STARTTLS=os.getenv("MAIL_STARTTLS") == "True",
+    MAIL_SSL_TLS=os.getenv("MAIL_SSL_TLS") == "True",
+    USE_CREDENTIALS=os.getenv("USE_CREDENTIALS") == "True",
+    VALIDATE_CERTS=os.getenv("VALIDATE_CERTS") == "True"
 )
 
 
 # Initialize Cloudinary with credentials (using f******35@gmail.com)
 cloudinary.config(
-    cloud_name='dlnojg1zy',
-    api_key='283489536347629',
-    api_secret='6x4m4n7PWkw682WioFnBVY7i-ug',
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
     secure=True
 )
 
